@@ -1,13 +1,13 @@
-import { useNavigate } from 'react-router-dom';
-import { prof, tube1, tube2, tube3, tube4, tube5 } from '../assets/index';
+import { useNavigate } from "react-router-dom";
+import { prof, tube1, tube2, tube3, tube4, tube5 } from "../assets/index";
 
-import styles from '../styles/AnalysisPageStyles'; // Import styles
+import styles from "../styles/AnalysisPageStyles";
 
 const AnalysisPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate('/dashboard/photo');
+    navigate("/dashboard/photo");
   };
 
   return (
