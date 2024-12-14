@@ -12,10 +12,7 @@ const PORT = 5000;
 
 // Initialize Stripe with your secret key
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-const FRONTEND_URL =
-  process.env.NODE_ENV === "production"
-    ? process.env.FRONTEND_URL_PROD
-    : process.env.FRONTEND_URL_DEV;
+const FRONTEND_URL = process.env.FRONTEND_URL;
 // Middleware
 app.use(cors());
 app.use(express.json());

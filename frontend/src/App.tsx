@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Pricing from "./pages/Pricing";
 import About from "./pages/About";
 import StripeSuccessPage from "./pages/StripeSuccessPage";
+import StripeCancelPage from "./pages/StripeCancelPage";
 
 // Using Vite environment variables for Clerk API key
 // const clerkFrontendApi = import.meta.env.VITE_CLERK_FRONTEND_API;
@@ -60,6 +61,7 @@ const App: React.FC = () => {
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/about" element={<About />} />
             <Route path="/success" element={<StripeSuccessPage />} />
+            <Route path="/cancel" element={<StripeCancelPage />} />
           </Routes>
         </main>
         <Footer />
