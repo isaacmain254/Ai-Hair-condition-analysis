@@ -72,7 +72,7 @@ const PaymentPlansSection = () => {
   };
 
   return (
-    <section className="bg-gray-100 py-16 px-6">
+    <section className="w-full bg-gray-100 py-16 px-6">
       <h3 className="text-3xl font-semibold text-center mb-4">
         Pricing plans for teams of all sizes
       </h3>
