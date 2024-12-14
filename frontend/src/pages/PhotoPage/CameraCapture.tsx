@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { styles } from '../../styles/CameraCaptureStyles';
+import React, { useRef, useState } from "react";
+import { styles } from "../../styles/CameraCaptureStyles";
 
 const CameraCapturePage: React.FC<{
   setImageSrc: React.Dispatch<React.SetStateAction<string | null>>;
@@ -8,8 +8,9 @@ const CameraCapturePage: React.FC<{
 }> = ({ setImageSrc, setIsCameraView, classifyImage }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [isCameraOpen, setIsCameraOpen] = useState(false);
 
+  const [isCameraOpen, setIsCameraOpen] = useState(false);
+  console.log(isCameraOpen);
   const openCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -17,23 +18,24 @@ const CameraCapturePage: React.FC<{
         videoRef.current.srcObject = stream;
         setIsCameraOpen(true);
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      alert('Camera not accessible or permission denied.');
+      alert("Camera not accessible or permission denied.");
       setIsCameraView(false);
     }
   };
 
   const capturePhoto = () => {
     if (canvasRef.current && videoRef.current) {
-      const context = canvasRef.current.getContext('2d');
+      const context = canvasRef.current.getContext("2d");
       canvasRef.current.width = videoRef.current.videoWidth;
       canvasRef.current.height = videoRef.current.videoHeight;
       context?.drawImage(videoRef.current, 0, 0);
-      const capturedImage = canvasRef.current.toDataURL('image/jpeg');
+      const capturedImage = canvasRef.current.toDataURL("image/jpeg");
       setImageSrc(capturedImage);
 
       // Convert the captured image to a file and classify it
-      const file = dataURLToFile(capturedImage, 'captured-photo.jpg');
+      const file = dataURLToFile(capturedImage, "captured-photo.jpg");
       classifyImage(file);
 
       // Stop the camera and go back to the main view
@@ -44,7 +46,7 @@ const CameraCapturePage: React.FC<{
   };
 
   const dataURLToFile = (dataUrl: string, fileName: string) => {
-    const arr = dataUrl.split(',');
+    const arr = dataUrl.split(",");
     const mime = arr[0].match(/:(.*?);/)?.[1];
     const bstr = atob(arr[1]);
     let n = bstr.length;
@@ -67,11 +69,14 @@ const CameraCapturePage: React.FC<{
           <button className={styles.buttonPink} onClick={capturePhoto}>
             Capture Photo
           </button>
-          <button className={styles.buttonRed} onClick={() => {
-            setIsCameraView(false);
-            const stream = videoRef.current?.srcObject as MediaStream;
-            if (stream) stream.getTracks().forEach((track) => track.stop());
-          }}>
+          <button
+            className={styles.buttonRed}
+            onClick={() => {
+              setIsCameraView(false);
+              const stream = videoRef.current?.srcObject as MediaStream;
+              if (stream) stream.getTracks().forEach((track) => track.stop());
+            }}
+          >
             Close Camera
           </button>
         </div>

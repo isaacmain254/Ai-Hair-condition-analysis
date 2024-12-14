@@ -2,14 +2,14 @@ import React, { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF, useTexture } from "@react-three/drei";
 import * as THREE from "three";
-import girl from "../models/source/girl.glb";
+// import girl from "../models/source/girl.glb";
 import textureImage from "../models/textures/textureImage.png";
 import styles from "../styles/HeroSectionStyles";
 import { useAuth } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
 
 const BlowDryer: React.FC = () => {
-  const { scene } = useGLTF(girl);
+  const { scene } = useGLTF("/girl.glb");
   const texture = useTexture(textureImage);
 
   const modelRef = useRef<THREE.Object3D>();

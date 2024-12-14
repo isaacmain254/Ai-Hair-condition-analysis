@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import {
-  FaHome,
+  // FaHome,
   FaCamera,
   FaChartLine,
-  FaHistory,
+  // FaHistory,
   FaBars,
 } from "react-icons/fa";
 import { useUser } from "@clerk/clerk-react";
@@ -100,7 +100,7 @@ const Dashboard: React.FC = () => {
             <p className={styles.credits}>(Credits: 50)</p>
             <div onClick={toggleCard} className={styles.avatarContainer}>
               <img
-                src={user.profileImageUrl || user.imageUrl || hair}
+                src={user?.imageUrl || hair}
                 alt="User Avatar"
                 className={styles.avatarImage}
               />
@@ -115,7 +115,7 @@ const Dashboard: React.FC = () => {
               )}
               <p className={styles.userEmail}>
                 {maskEmail(
-                  user.primaryEmailAddress?.emailAddress || "user@example.com"
+                  user?.primaryEmailAddress?.emailAddress || "user@example.com"
                 )}
               </p>
             </div>
@@ -126,7 +126,7 @@ const Dashboard: React.FC = () => {
             <div ref={cardRef} className={styles.userCard}>
               <div className={styles.cardHeader}>
                 <img
-                  src={user.profileImageUrl || user.imageUrl || hair}
+                  src={user.imageUrl || hair}
                   alt="User Avatar"
                   className={styles.cardAvatar}
                 />
