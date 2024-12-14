@@ -12,7 +12,10 @@ const PORT = 5000;
 
 // Initialize Stripe with your secret key
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
+const FRONTEND_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.FRONTEND_URL_PROD
+    : process.env.FRONTEND_URL_DEV;
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -42,8 +45,8 @@ app.post("/create-checkout-session", async (req, res) => {
           quantity: 1,
         },
       ],
-      success_url: "http://localhost:3000/success",
-      cancel_url: "http://localhost:3000/cancel",
+      success_url: `${FRONTEND_URL}/success`,
+      cancel_url: `${FRONTEND_URL}/cancel`,
     });
 
     res.json({ url: session.url });

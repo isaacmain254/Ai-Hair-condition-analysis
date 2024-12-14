@@ -29,7 +29,7 @@ const App: React.FC = () => {
             <Route
               path="/login"
               element={
-                <div className="flex items-center justify-center h-screen">
+                <div className="flex w-full items-center justify-center h-screen">
                   <SignIn />
                 </div>
               }
@@ -38,7 +38,7 @@ const App: React.FC = () => {
             <Route
               path="/signup"
               element={
-                <div className="flex items-center justify-center h-screen">
+                <div className="flex w-full items-center justify-center h-screen">
                   <SignUp />
                 </div>
               }

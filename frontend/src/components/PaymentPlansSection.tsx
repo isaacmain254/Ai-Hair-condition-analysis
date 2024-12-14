@@ -2,11 +2,10 @@
 import { FaCheckCircle } from "react-icons/fa";
 import axios from "axios";
 import { loadStripe } from "@stripe/stripe-js";
+import { apiUrl } from "../constants";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
-const checkoutEndpoint = import.meta.env.PROD
-  ? import.meta.env.VITE_API_URL
-  : "http://localhost:5000";
+
 export interface Plan {
   name: string;
   amount: number;
@@ -57,14 +56,11 @@ const PaymentPlansSection = () => {
     }
 
     try {
-      const response = await axios.post(
-        `${checkoutEndpoint}/create-checkout-session`,
-        {
-          planId: plan.name,
-          planAmount: plan.amount,
-          planCurrency: "usd",
-        }
-      );
+      const response = await axios.post(`${apiUrl}/create-checkout-session`, {
+        planId: plan.name,
+        planAmount: plan.amount,
+        planCurrency: "usd",
+      });
 
       if (response.data && response.data.url) {
         window.location.href = response.data.url;
